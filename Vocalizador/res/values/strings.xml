@@ -1,0 +1,20 @@
+<resources>
+
+    <string name="app_name">VoxLaPS</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_voxlaps">VoxLaPS</string>
+    <string name="Nome">Nome</string>
+    <string name="head">HEAD</string>
+    <string name="button">Butão</string>
+    <string name="desc01">Desc</string>
+    <string name="play">play</string>
+    <string name="back">back</string>
+    <string name="clear">clear</string>
+    <!-- Strings do banco de dados -->
+    <string name="onCreate">CREATE TABLE Image (ID INTEGER PRIMARY KEY, Nome TEXT, Posicao INT, Texto TEXT, Imagem TEXT, Tipo BOOLEAN);</string>
+    <string name="onUpgrade">DROP TABLE IF EXISTS Image</string>
+    <string name="title_activity_add_image">VoxLaPS</string>
+    <string name="title_activity_tphoto">VoxLaPS</string>
+
+</resources>

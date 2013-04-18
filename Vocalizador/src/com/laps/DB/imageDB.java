@@ -51,15 +51,15 @@ public class imageDB extends SQLiteOpenHelper {
 		String SQL = "CREATE TABLE IF NOT EXISTS prin (ID_prin INTEGER PRIMARY KEY, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
 "Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER)";
 		String SQL2 = "CREATE TABLE IF NOT EXISTS est (ID_est INTEGER PRIMARY KEY, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL, " +
-"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, code_prin INTEGER, constraint fk_prin FOREIGN KEY (code_prin) references prin (ID_prin))";
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, code_prin INTEGER, constraint fk_pe FOREIGN KEY (code_prin) references prin (ID_prin))";
 		String SQL3 = "CREATE TABLE IF NOT EXISTS perg (ID_perg INTEGER PRIMARY KEY, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
-"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codp_prin INTEGER, constraint fk_prin FOREIGN KEY (codp_prin) references prin (ID_prin))";
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codp_prin INTEGER, constraint fk_pp FOREIGN KEY (codp_prin) references prin (ID_prin))";
 		String SQL4 = "CREATE TABLE IF NOT EXISTS quero (ID_quero INTEGER PRIMARY KEY, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
-"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codq_prin INTEGER, constraint fk_prin FOREIGN KEY (codq_prin) references prin (ID_prin))";
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codq_prin INTEGER, constraint fk_pq FOREIGN KEY (codq_prin) references prin (ID_prin))";
 		String SQL5 = "CREATE TABLE IF NOT EXISTS comer (ID_comer INTEGER, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
-"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codc_quero INTEGER, constraint pk_comer PRIMARY KEY (ID_comer, codc_quero), constraint fk_quero FOREIGN KEY (codc_quero) references quero (ID_quero))";
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codc_quero INTEGER, constraint pk_comer PRIMARY KEY (ID_comer, codc_quero), constraint fk_qc FOREIGN KEY (codc_quero) references quero (ID_quero))";
 		String SQL6 = "CREATE TABLE IF NOT EXISTS beber (ID_beber INTEGER, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
-"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codb_quero INTEGER, constraint pk_beber PRIMARY KEY (ID_beber, codb_quero), constraint fk_quero FOREIGN KEY (codb_quero) references quero (ID_quero))";
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codb_quero INTEGER, constraint pk_beber PRIMARY KEY (ID_beber, codb_quero), constraint fk_qb FOREIGN KEY (codb_quero) references quero (ID_quero))";
 		
 		db.execSQL(SQL);
 		db.execSQL(SQL2);
@@ -118,7 +118,6 @@ public class imageDB extends SQLiteOpenHelper {
 	public List<prin> getLista(){//retorna a lista com o conteudo do bd
 		List<prin> imagens = new ArrayList<prin>();
 		
-		//String selecionadif = "SELECT * FROM prin WHERE ID_prin != code_prin";
 		//retorna o conteudo do bd
 		Cursor valorbd = getWritableDatabase().query(PRIN, colprin, null, null, null, null, null);
 		//manipula o bd

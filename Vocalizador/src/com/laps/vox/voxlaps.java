@@ -167,7 +167,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//get all itens in the database
     	List<prin> imagens = getImages();
-    	//getDominio();add dominio**
+    	//getDominios(imagens);//modifiquei
     	//path to get the images
     	String ExternalPath = Environment.getExternalStorageDirectory()
     			.toString()+"/voxlaps/";
@@ -247,17 +247,17 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     }
     
     //metodo para mostrar os dominios
-   View.OnClickListener getDominios(final prin img){
-	   final String nome = img.getNome();
+   View.OnClickListener getDominios(final List<prin> imagens){
+	   final String nome = ((prin) imagens).getNome();
 	   return new View.OnClickListener() {
 		
 		@Override
-		public void onClick(View v2) {
+		public void onClick(View v2) {//modifiquei
 			if(nome.equals("quero")){
 		//chama a lista correspondente
-				
+			
 			}else if(nome.equals("estou")){
-				
+			getImag();
 			}else if(nome.equals("perg")){
 				
 			}
@@ -268,9 +268,9 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 
     //define menu
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.avoxlaps, menu);
+       //getMenuInflater().inflate(R.menu.avoxlaps, menu); modifiquei p/ ajeitar
         
-        MenuItem resol = menu.add(0,0,0,"ResoluÃ§Ã£o");
+        MenuItem resol = menu.add(0,0,0,"Resolução");
         MenuItem novo = menu.add(0,1,0,"Nova Imagem");
         resol.setIcon(R.drawable.ic_launcher);
         novo.setIcon(android.R.drawable.ic_menu_camera);
@@ -285,7 +285,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         			,"8x8"};
         	new AlertDialog.Builder(this)
         	.setIcon(android.R.drawable.ic_dialog_alert)
-        	.setTitle("Escolha uma resoluÃ§Ã£o")
+        	.setTitle("Escolha uma resolução")
         	.setItems(items, new DialogInterface.OnClickListener() {
         	    public void onClick(DialogInterface dialog, int item) {
         	    	sizeX = item + 3;
@@ -353,5 +353,13 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 		dao.close();
 		
 		return imagens;
+	}
+	
+	public List<est> getImag(){//criei
+		imageDB estou = new imageDB(this);
+		final List<est> img = estou.getListaEst();
+		estou.close();
+		
+		return img;
 	}
 }

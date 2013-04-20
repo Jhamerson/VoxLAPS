@@ -36,8 +36,8 @@ public class imageDB extends SQLiteOpenHelper {
 	private static final String[] colest = {"ID_est","Nome", "Texto", "Imagem", "Posicao", "code_prin"};
 	private static final String[] colperg = {"ID_perg","Nome", "Texto", "Imagem", "Posicao", "codp_prin"};
 	private static final String[] colquero = {"ID_quero", "Nome", "Texto", "Imagem", "Posicao", "codq_prin"};
-	private static final String[] colcomer = {"ID_comer","Nome", "Texto", "Imagem", "Posicao", "codc_qp"};
-	private static final String[] colbeber = {"ID_beber","Nome", "Texto", "Imagem", "Posicao", "codb_qp"};
+	private static final String[] colcomer = {"ID_comer","Nome", "Texto", "Imagem", "Posicao", "codc_quero"};
+	private static final String[] colbeber = {"ID_beber","Nome", "Texto", "Imagem", "Posicao", "codb_quero"};
 	
 	public imageDB(Context context) {
 		super(context, NAME_DB, null, VERSAO);
@@ -164,9 +164,9 @@ Cursor valorbd2 = getWritableDatabase().query(EST, colest, null, null, null, nul
 		valorest.setID_est(valorbd2.getInt(0));
 		valorest.setNome(valorbd2.getString(1));
 		valorest.setTexto(valorbd2.getString(2));
-		valorest.setImagem(valorbd2.getString(4));
-		valorest.setPosicao(valorbd2.getInt(5));
-		valorest.setID_prin(valorbd2.getInt(6));
+		valorest.setImagem(valorbd2.getString(3));
+		valorest.setPosicao(valorbd2.getInt(4));
+		valorest.setID_prin(valorbd2.getInt(5));
 		estou.add(valorest);
 	}
 	valorbd2.close();
@@ -185,9 +185,9 @@ Cursor valorbd2 = getWritableDatabase().query(EST, colest, null, null, null, nul
 		valorperg.setID_perg(valorbd2.getInt(0));
 		valorperg.setNome(valorbd2.getString(1));
 		valorperg.setTexto(valorbd2.getString(2));
-		valorperg.setImagem(valorbd2.getString(4));
-		valorperg.setPosicao(valorbd2.getInt(5));
-		valorperg.setID_prin(valorbd2.getInt(6));
+		valorperg.setImagem(valorbd2.getString(3));
+		valorperg.setPosicao(valorbd2.getInt(4));
+		valorperg.setID_prin(valorbd2.getInt(5));
 		pergunta.add(valorperg);
 	}
 	valorbd2.close();
@@ -206,9 +206,9 @@ public List<quero> getListaQuero(){//lista de imagens tabela Quero
 		valorquero.setID_quero(valorbd2.getInt(0));
 		valorquero.setNome(valorbd2.getString(1));
 		valorquero.setTexto(valorbd2.getString(2));
-		valorquero.setImagem(valorbd2.getString(4));
-		valorquero.setPosicao(valorbd2.getInt(5));
-		valorquero.setID_prin(valorbd2.getInt(6));
+		valorquero.setImagem(valorbd2.getString(3));
+		valorquero.setPosicao(valorbd2.getInt(4));
+		valorquero.setID_prin(valorbd2.getInt(5));
 		quero.add(valorquero);
 	}
 	valorbd2.close();
@@ -227,9 +227,9 @@ while (valorbd2.moveToNext()){
 	valorcome.setID_comer(valorbd2.getInt(0));
 	valorcome.setNome(valorbd2.getString(1));
 	valorcome.setTexto(valorbd2.getString(2));
-	valorcome.setImagem(valorbd2.getString(4));
-	valorcome.setPosicao(valorbd2.getInt(5));
-	valorcome.setID_quero(valorbd2.getInt(6));
+	valorcome.setImagem(valorbd2.getString(3));
+	valorcome.setPosicao(valorbd2.getInt(4));
+	valorcome.setID_quero(valorbd2.getInt(5));
 	comer.add(valorcome);
 }
 valorbd2.close();
@@ -248,9 +248,9 @@ while (valorbd2.moveToNext()){
 	valorbebe.setID_beber(valorbd2.getInt(0));
 	valorbebe.setNome(valorbd2.getString(1));
 	valorbebe.setTexto(valorbd2.getString(2));
-	valorbebe.setImagem(valorbd2.getString(4));
-	valorbebe.setPosicao(valorbd2.getInt(5));
-	valorbebe.setID_quero(valorbd2.getInt(6));
+	valorbebe.setImagem(valorbd2.getString(3));
+	valorbebe.setPosicao(valorbd2.getInt(4));
+	valorbebe.setID_quero(valorbd2.getInt(5));
 	beber.add(valorbebe);
 }
 valorbd2.close();

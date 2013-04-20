@@ -97,7 +97,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             OutputStream out = null;
             try {
               in = assetManager.open(filename);
-              //The file 'Image' is the database and
+              //The file 'BDVox.slite' is the database and
               //store it in other directory, else store
               //in sdcard in /voxlaps
               if(!filename.equals("BDVox.sqlite")){
@@ -160,14 +160,16 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	sizeX = savedInstanceState.getInt("sizeX");
     }
 
-    //create the buttons dynamically
+    //create the buttons dynamically*
     public void createButtons(int numb){
     	int i = 0,j = 0;
     	int count = 0;
     	
     	//get all itens in the database
     	List<prin> imagens = getImages();
+    	//List<quero> imagens = getQuero();
     	//getDominios(imagens);//modifiquei
+    	
     	//path to get the images
     	String ExternalPath = Environment.getExternalStorageDirectory()
     			.toString()+"/voxlaps/";
@@ -230,7 +232,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	count++;
         	}
     	}
-    }
+    }//*
     
     //Get the text and synthesis that
     View.OnClickListener getOnClick(final ImageButtonM figura)  {
@@ -250,16 +252,14 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
    View.OnClickListener getDominios(final List<prin> imagens){
 	   final String nome = ((prin) imagens).getNome();
 	   return new View.OnClickListener() {
-		
 		@Override
 		public void onClick(View v2) {//modifiquei
 			if(nome.equals("quero")){
-		//chama a lista correspondente
-			
-			}else if(nome.equals("estou")){
-			getImag();
+				List<quero> imagens = getQuero();
+			}else if(nome.equals("est")){
+				List<est> imagens = getEst();
 			}else if(nome.equals("perg")){
-				
+				List<perg> imagens = getPerg();
 			}
 			
 		}
@@ -355,10 +355,42 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 		return imagens;
 	}
 	
-	public List<est> getImag(){//criei
+	public List<est> getEst(){//mostra as imagens da tabela estou 
 		imageDB estou = new imageDB(this);
 		final List<est> img = estou.getListaEst();
 		estou.close();
+		
+		return img;
+	}
+	
+	public List<perg> getPerg(){//mostra as imagens da tabela pergunta
+		imageDB pergunta = new imageDB(this);
+		final List<perg> img = pergunta.getListaPerg();
+		pergunta.close();
+		
+		return img;
+	}
+	
+	public List<quero> getQuero(){//mostra as imagens da tabela quero
+		imageDB qro = new imageDB(this);
+		final List<quero> img = qro.getListaQuero();
+		qro.close();
+		
+		return img;
+	}
+	
+	public List<beber> getBeber(){//mostra as imagens da tabela beber
+		imageDB bb = new imageDB(this);
+		final List<beber> img = bb.getListaBeber();
+		bb.close();
+		
+		return img;
+	}
+	
+	public List<comer> getComer(){//mostra as imagens da tabela comer
+		imageDB comer = new imageDB(this);
+		final List<comer> img = comer.getListaComer();
+		comer.close();
 		
 		return img;
 	}

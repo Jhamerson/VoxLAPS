@@ -2,15 +2,14 @@ package com.laps.vox;
 
 import java.io.Serializable;
 
-public class perg implements Serializable{
+public class pergunta implements Serializable{
 	
 	private int ID_perg;
 	private String Nome;
 	private String Texto;
 	private String Imagem;
 	private int Posicao;
-	private int codp_prin;
-	
+	private int codperg_menu;
 	private static final long serialVersionUID = 1L;
 	
 	public int getID_perg() {
@@ -43,12 +42,12 @@ public class perg implements Serializable{
 	public void setPosicao(int posicao) {
 		Posicao = posicao;
 	}
-	public int getID_prin() {
-		return codp_prin;
+	public int getCodperg_menu() {
+		return codperg_menu;
 	}
-	public void setID_prin(int iD_prin) {
-		codp_prin = iD_prin;
+	public void setCodperg_menu(int codperg_menu) {
+		this.codperg_menu = codperg_menu;
 	}
-	
-	
+
+
 }

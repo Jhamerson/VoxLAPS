@@ -2,22 +2,21 @@ package com.laps.vox;
 
 import java.io.Serializable;
 
-public class comer implements Serializable{
+public class sentimento implements Serializable{
 	
-	private int ID_comer;
+	private int ID_sent;
 	private String Nome;
 	private String Texto;
 	private String Imagem;
 	private int Posicao;
-	private int codc_quero;
-	
+	private int codsent_menu;
 	private static final long serialVersionUID = 1L;
 	
-	public int getID_comer() {
-		return ID_comer;
+	public int getID_sent() {
+		return ID_sent;
 	}
-	public void setID_comer(int iD_comer) {
-		ID_comer = iD_comer;
+	public void setID_sent(int iD_sent) {
+		ID_sent = iD_sent;
 	}
 	public String getNome() {
 		return Nome;
@@ -43,11 +42,11 @@ public class comer implements Serializable{
 	public void setPosicao(int posicao) {
 		Posicao = posicao;
 	}
-	public int getID_quero() {
-		return codc_quero;
+	public int getCodsent_menu() {
+		return codsent_menu;
 	}
-	public void setID_quero(int iD_quero) {
-		codc_quero = iD_quero;
+	public void setCodsent_menu(int codsent_menu) {
+		this.codsent_menu = codsent_menu;
 	}
 
 }

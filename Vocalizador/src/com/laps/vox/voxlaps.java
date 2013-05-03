@@ -166,10 +166,9 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	int count = 0;
     	
     	//get all itens in the database
-    	List<prin> imagens = getImages();
-    	//List<quero> imagens = getQuero();
-    	//getDominios(imagens);//modifiquei
-    	
+    	List<menu> imagens = getImages();
+    	//List<pessoa> imagens = getPes();
+        	
     	//path to get the images
     	String ExternalPath = Environment.getExternalStorageDirectory()
     			.toString()+"/voxlaps/";
@@ -224,6 +223,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         		//get text that will by synthesis
         		figura.setText(imagens.get(count).getTexto());
             	figura.setOnClickListener(getOnClick(figura));
+            	//figura.setOnClickListener(getDominios(imagens));
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
@@ -249,19 +249,37 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     }
     
     //metodo para mostrar os dominios
-   View.OnClickListener getDominios(final List<prin> imagens){
-	   final String nome = ((prin) imagens).getNome();
+  View.OnClickListener getDominios(final List<menu> imagens){
+	   final int cod = ((menu) imagens).getID();
 	   return new View.OnClickListener() {
 		@Override
-		public void onClick(View v2) {//modifiquei
-			if(nome.equals("quero")){
-				List<quero> imagens = getQuero();
-			}else if(nome.equals("est")){
-				List<est> imagens = getEst();
-			}else if(nome.equals("perg")){
-				List<perg> imagens = getPerg();
-			}
+		public void onClick(View v2) {
 			
+			switch(cod){
+			
+			case 1:
+				getPes();
+				break;	
+			case 2:
+				getVerb();
+				break;
+			case 3:
+				getAC();
+				break;
+			case 4:	
+				getPerg();
+				break;
+			case 5:
+				getSent();
+				break;
+			case 6:
+				getExp();
+				break;
+			case 7:
+				getAdj();
+				break;
+				}
+				
 		}
 	};
    }
@@ -270,9 +288,9 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     public boolean onCreateOptionsMenu(Menu menu) {
        //getMenuInflater().inflate(R.menu.avoxlaps, menu); modifiquei p/ ajeitar
         
-        MenuItem resol = menu.add(0,0,0,"Resolução");
-        MenuItem novo = menu.add(0,1,0,"Nova Imagem");
-        resol.setIcon(R.drawable.ic_launcher);
+       // MenuItem resol = menu.add(0,0,0,"Resolução");
+        MenuItem novo = menu.add(0,1,0,"Adicionar Imagem");
+      //  resol.setIcon(R.drawable.ic_launcher);
         novo.setIcon(android.R.drawable.ic_menu_camera);
       
         return true;
@@ -280,7 +298,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     
     public boolean onOptionsItemSelected(MenuItem item){
     	//Define the resolution of the buttons
-        if( item.getItemId() == 0){
+      /*  if( item.getItemId() == 0){
         	final CharSequence[] items = {"3x3", "4x4","5x5","6x6","7x7"
         			,"8x8"};
         	new AlertDialog.Builder(this)
@@ -294,7 +312,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         	        		Toast.LENGTH_SHORT).show();
         	    }
         	}).show();
-        }
+        }*/
         if( item.getItemId() == 1){
         	startActivity(new Intent(this, AddImage.class));
         }
@@ -347,50 +365,66 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     			TextToSpeech.QUEUE_ADD, null);
     }
 	//get all itens in database
-	public List<prin> getImages(){
+	public List<menu> getImages(){
 		imageDB dao = new imageDB(this);
-		final List<prin> imagens = dao.getLista();
+		final List<menu> imagens = dao.getLista();
 		dao.close();
 		
 		return imagens;
 	}
 	
-	public List<est> getEst(){//mostra as imagens da tabela estou 
-		imageDB estou = new imageDB(this);
-		final List<est> img = estou.getListaEst();
-		estou.close();
+	public List<pessoa> getPes(){//mostra as imagens da tabela pessoa
+		imageDB p = new imageDB(this);
+		final List<pessoa> img = p.getListaP();
+		p.close();
 		
 		return img;
 	}
 	
-	public List<perg> getPerg(){//mostra as imagens da tabela pergunta
+	public List<pergunta> getPerg(){//mostra as imagens da tabela pergunta
 		imageDB pergunta = new imageDB(this);
-		final List<perg> img = pergunta.getListaPerg();
+		final List<pergunta> img = pergunta.getListaPerg();
 		pergunta.close();
 		
 		return img;
 	}
 	
-	public List<quero> getQuero(){//mostra as imagens da tabela quero
-		imageDB qro = new imageDB(this);
-		final List<quero> img = qro.getListaQuero();
-		qro.close();
+	public List<expressao> getExp(){//mostra as imagens da tabela expressao
+		imageDB exp = new imageDB(this);
+		final List<expressao> img = exp.getListaExp();
+		exp.close();
 		
 		return img;
 	}
 	
-	public List<beber> getBeber(){//mostra as imagens da tabela beber
-		imageDB bb = new imageDB(this);
-		final List<beber> img = bb.getListaBeber();
-		bb.close();
+	public List<sentimento> getSent(){//mostra as imagens da tabela sentimento
+		imageDB sent = new imageDB(this);
+		final List<sentimento> img = sent.getListaSent();
+		sent.close();
 		
 		return img;
 	}
 	
-	public List<comer> getComer(){//mostra as imagens da tabela comer
-		imageDB comer = new imageDB(this);
-		final List<comer> img = comer.getListaComer();
-		comer.close();
+	public List<adjetivo> getAdj(){//mostra as imagens da tabela adjetivo
+		imageDB adj = new imageDB(this);
+		final List<adjetivo> img = adj.getListaAdj();
+		adj.close();
+		
+		return img;
+	}
+	
+	public List<acoes> getAC(){//mostra as imagens da tabela ações
+		imageDB ac = new imageDB(this);
+		final List<acoes> img = ac.getListaAC();
+		ac.close();
+		
+		return img;
+	}
+	
+	public List<verbo> getVerb(){//mostra as imagens da tabela verbo
+		imageDB vb = new imageDB(this);
+		final List<verbo> img = vb.getListaVerb();
+		vb.close();
 		
 		return img;
 	}

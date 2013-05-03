@@ -7,10 +7,9 @@
         android:id="@+id/head"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="50dp"
 
-        android:layout_gravity="fill"
-        android:text="@string/head" />
+        android:layout_gravity="fill"/>
     
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -19,14 +18,14 @@
             android:id="@+id/play"
             android:background="@drawable/av_play"
             android:onClick="buttonPlay"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
+	        android:layout_width="80dp"
+	        android:layout_height="60dp" />
         <Button 
             android:id="@+id/back"
             android:background="@drawable/content_backspace"
             android:onClick="buttonBack"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:layout_width="60dp"
+	        android:layout_height="60dp"
 	        android:layout_toRightOf="@id/play" />
 
         <Button
@@ -34,7 +33,7 @@
             android:background="@drawable/content_remove"
             android:onClick="buttonClear"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_alignParentRight="true" />
 
     </RelativeLayout>

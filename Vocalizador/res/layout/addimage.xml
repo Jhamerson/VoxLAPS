@@ -60,16 +60,22 @@
         android:orientation="horizontal" >
    
         <RadioButton
-            android:id="@+id/prin"
+            android:id="@+id/pes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Principal" />
+            android:text="Pessoa" />
 
         <RadioButton
-            android:id="@+id/est"
+            android:id="@+id/verb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estou" />
+            android:text="Verbo" />
+
+        <RadioButton
+            android:id="@+id/acao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ação" />
 
         <RadioButton
             android:id="@+id/perg"
@@ -78,22 +84,22 @@
             android:text="Pergunta" />
 
         <RadioButton
-            android:id="@+id/quero"
+            android:id="@+id/sent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quero" />
+            android:text="Sentimento" />
 
         <RadioButton
-            android:id="@+id/comer"
+            android:id="@+id/adj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Comer" />
-
-        <RadioButton
-            android:id="@+id/beber"
+            android:text="Adjetivo" />
+                       
+   <RadioButton
+            android:id="@+id/exp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beber" />
+            android:text="Expressão" />
     </RadioGroup>
 
     <ImageView
@@ -113,7 +119,17 @@
         android:layout_marginBottom="30dp"
         android:clickable="true"
         android:onClick="buttonTPhoto"
-        android:text="Nova Imagem" />
+        android:text="Tirar Foto" />
+    
+      <Button
+        android:id="@+id/arq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tphoto"
+        android:layout_marginLeft="100dp"
+        android:clickable="true"
+        android:onClick="buttonArq"
+        android:text="Imagem do PC" />
 
     <!-- Save in DB -->
     <Button

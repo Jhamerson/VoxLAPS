@@ -2,22 +2,20 @@ package com.laps.vox;
 
 import java.io.Serializable;
 
-public class quero implements Serializable{
+public class menu implements Serializable{
 	
-	private int ID_quero;
+	private int ID_menu;
 	private String Nome;
 	private String Texto;
 	private String Imagem;
 	private int Posicao;
-	private int codq_prin;
-	
 	private static final long serialVersionUID = 1L;
 	
-	public int getID_quero() {
-		return ID_quero;
+	public int getID() {
+		return ID_menu;
 	}
-	public void setID_quero(int iD_qp) {
-		ID_quero = iD_qp;
+	public void setID(int iD_m) {
+		ID_menu = iD_m;
 	}
 	public String getNome() {
 		return Nome;
@@ -43,11 +41,5 @@ public class quero implements Serializable{
 	public void setPosicao(int posicao) {
 		Posicao = posicao;
 	}
-	public int getID_prin() {
-		return codq_prin;
-	}
-	public void setID_prin(int iD_prin) {
-		codq_prin = iD_prin;
-	}
-	
+
 }

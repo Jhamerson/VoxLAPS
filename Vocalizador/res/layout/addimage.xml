@@ -129,7 +129,7 @@
         android:layout_marginLeft="100dp"
         android:clickable="true"
         android:onClick="buttonArq"
-        android:text="Imagem do PC" />
+        android:text="Imagem" />
 
     <!-- Save in DB -->
     <Button

@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:weightSum="7"
     android:layout_height="fill_parent" >
+    
     <TextView
         android:id="@+id/head"
         android:layout_width="fill_parent"
@@ -20,6 +21,7 @@
             android:onClick="buttonPlay"
 	        android:layout_width="80dp"
 	        android:layout_height="60dp" />
+        
         <Button 
             android:id="@+id/back"
             android:background="@drawable/content_backspace"
@@ -32,9 +34,17 @@
             android:id="@+id/clear"
             android:background="@drawable/content_remove"
             android:onClick="buttonClear"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true" />
+        
+         <Button
+            android:id="@+id/voltar"
+            android:background="@drawable/previous"
+            android:onClick="buttonVoltar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_toLeftOf="@id/clear" />
 
     </RelativeLayout>
 

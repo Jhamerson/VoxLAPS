@@ -71,11 +71,11 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 		startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
 		
         setContentView(R.layout.avoxlaps);
-        createButtons(sizeX);
+        createButtons();//sizeX
     }
     
     //Save the "resolution" of the buttons
-    public void onSaveInstanceState(Bundle saveState){
+   public void onSaveInstanceState(Bundle saveState){
     	super.onSaveInstanceState(saveState);
     	saveState.putInt("sizeX", sizeX);
     }
@@ -162,11 +162,11 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     
     //restore the resolution of the buttons
     private void restoreProgress(Bundle savedInstanceState) {
-    	sizeX = savedInstanceState.getInt("sizeX");
+    	sizeX = savedInstanceState.getInt("sizeX");//entender
     }
 
     //create the buttons dynamically*
-    public void createButtons(int numb){
+    public void createButtons(){
     	int i = 0,j = 0;
     	int count = 0;
     	
@@ -179,7 +179,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(3);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -202,8 +202,8 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         }
 
         //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
+        for(j = 0; j < 3; j++){
+        	for(i = 0; i < 3; i++){
         		figura = new ImageButtonM(this);//ImageButtonM extends
         		//Image button and add a String Text to attributes
             	figura.setTag("mybutton "+count);
@@ -230,7 +230,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            	Lines.setWeightSum(3);//Numero de colunas
             	Lines.addView(figura);
             	count++;
             	
@@ -882,7 +882,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 	public void buttonVoltar(View v)  {
 		Button volta = (Button) findViewById (R.id.voltar);
 		volta.setClickable(true);
-		createButtons(3);
+		createButtons();
     }
 	
 	public void buttonProximo(View v)  {

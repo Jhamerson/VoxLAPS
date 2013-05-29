@@ -5,8 +5,9 @@ import android.widget.ImageButton;
 
 public class ImageButtonM extends ImageButton{
 	private String Text = "";
-	private int id ;
-		
+	private int id;	
+	private int posicao;
+	
 	public ImageButtonM(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -24,6 +25,12 @@ public class ImageButtonM extends ImageButton{
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getPosicao() {
+		return posicao;
+	}
+	public void setPosicao(int posicao) {
+		this.posicao = posicao;
 	}
 
 }

@@ -42,14 +42,7 @@ public class AddImage extends Activity {
 		Intent i = new Intent(this, TPhoto.class);
 		startActivityForResult(i, 0);
 	}
-	
-	public void EscTela(View v){
-		
-        
-                	
-	}
 
-	
 	public void buttonSave(View v){
 		//Store in database
 	String Name = ((EditText) findViewById(com.laps.vox.R.id.Name))
@@ -67,7 +60,7 @@ public class AddImage extends Activity {
 		Constants.POSICAO++;
 		novo.setCodpes_menu(1);
 		imageDB db = new imageDB(this);
-		db.inserir(novo);
+		db.InserirP(novo);
 		db.close();
 		
 		finish();

@@ -39,12 +39,20 @@
             android:layout_alignParentRight="true" />
         
          <Button
+            android:id="@+id/proximo"
+            android:background="@drawable/proximo"
+            android:onClick="buttonProximo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_toLeftOf="@id/clear" />
+         
+         <Button
             android:id="@+id/voltar"
             android:background="@drawable/previous"
             android:onClick="buttonVoltar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_toLeftOf="@id/clear" />
+            android:layout_toLeftOf="@id/proximo" />
 
     </RelativeLayout>
 

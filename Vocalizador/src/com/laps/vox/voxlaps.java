@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,14 +29,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 
 public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
@@ -236,11 +240,13 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         	}
     	}
     }//*
+    
           
-    public void createButtonsPes(int numb){
+    public void createButtonsPes(){
+    	int linha=3;
+    	int coluna=4;
     	int i = 0,j = 0;
     	int count = 0;
-    	
     	
     	//get all itens in the database
     	List<pessoa> imagens = getPes();
@@ -251,7 +257,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(linha);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -272,18 +278,18 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         	Lines = (LinearLayout) findViewById(layouts[i]);
         	Lines.removeAllViews();
         }
-
-        //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
-        		figura2 = new ImageButtonM(this);//ImageButtonM extends
-        		//Image button and add a String Text to attributes
+     	
+        for(j = 0; j < linha; j++){
+        	for(i = 0; i < coluna; i++){
+        		figura2 = new ImageButtonM(this);
+        	
             	figura2.setTag("mybutton "+count);
             	figura2.setId(count); 
             	figura2.setScaleType(ImageButton.ScaleType.CENTER_INSIDE); 
             	figura2.setLayoutParams(new TableLayout.LayoutParams(
             	        ViewGroup.LayoutParams.MATCH_PARENT,
             	            ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+            	
             	//If image was added by user, get the full path from database
         		if(imagens.get(count).getImagem()
         				.contains("saved")){
@@ -299,17 +305,22 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         		//get text that will by synthesis
         		figura2.setText(imagens.get(count).getTexto());
             	figura2.setOnClickListener(getOnClick(figura2));
+          
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            	
+            	Lines.setWeightSum(coluna);//Numero de colunas
             	Lines.addView(figura2);
             	count++;
-        	}
+            	
     	  }
         }
-        
-      /* public void createButtonsPerg(int numb){
+    }
+
+       public void createButtonsPerg(){
+    	int linha = 3;
+    	int coluna = 4;
     	int i = 0,j = 0;
     	int count = 0;
     	
@@ -323,7 +334,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(linha);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -346,8 +357,8 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         }
 
         //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
+        for(j = 0; j < linha; j++){
+        	for(i = 0; i < coluna; i++){
         		figura2 = new ImageButtonM(this);//ImageButtonM extends
         		//Image button and add a String Text to attributes
             	figura2.setTag("mybutton "+count);
@@ -374,14 +385,16 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            	Lines.setWeightSum(coluna);//Numero de colunas
             	Lines.addView(figura2);
             	count++;
         	}
     	}
     }
     
-    public void createButtonsExp(int numb){
+    public void createButtonsExp(){
+    	int linha = 3;
+    	int coluna = 4;
     	int i = 0,j = 0;
     	int count = 0;
     	
@@ -395,7 +408,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(linha);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -418,8 +431,8 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         }
 
         //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
+        for(j = 0; j < linha; j++){
+        	for(i = 0; i < coluna; i++){
         		figura2 = new ImageButtonM(this);//ImageButtonM extends
         		//Image button and add a String Text to attributes
             	figura2.setTag("mybutton "+count);
@@ -446,20 +459,22 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            	Lines.setWeightSum(coluna);//Numero de colunas
             	Lines.addView(figura2);
             	count++;
         	}
     	}
     }
     
-    public void createButtonsAcao(int numb){
+    public void createButtonsAcao(){
+    	int linha = 3;
+    	int coluna = 4;
     	int i = 0,j = 0;
     	int count = 0;
     	
     	
     	//get all itens in the database
-    	List<acoes> imagens = getAC();
+    	List<acao> imagens = getAC();
         	
     	//path to get the images
     	String ExternalPath = Environment.getExternalStorageDirectory()
@@ -467,7 +482,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(linha);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -490,8 +505,8 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         }
 
         //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
+        for(j = 0; j < linha; j++){
+        	for(i = 0; i < coluna; i++){
         		figura2 = new ImageButtonM(this);//ImageButtonM extends
         		//Image button and add a String Text to attributes
             	figura2.setTag("mybutton "+count);
@@ -518,14 +533,16 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            	Lines.setWeightSum(coluna);//Numero de colunas
             	Lines.addView(figura2);
             	count++;
         	}
     	}
     }
     
-    public void createButtonsAdj(int numb){
+    public void createButtonsAdj(){
+    	int linha = 3;
+    	int coluna = 3;
     	int i = 0,j = 0;
     	int count = 0;
     	
@@ -539,7 +556,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(linha);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -562,8 +579,8 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         }
 
         //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
+        for(j = 0; j < linha; j++){
+        	for(i = 0; i < coluna; i++){
         		figura2 = new ImageButtonM(this);//ImageButtonM extends
         		//Image button and add a String Text to attributes
             	figura2.setTag("mybutton "+count);
@@ -571,7 +588,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	figura2.setScaleType(ImageButton.ScaleType.CENTER_INSIDE); 
             	figura2.setLayoutParams(new TableLayout.LayoutParams(
             	        ViewGroup.LayoutParams.MATCH_PARENT,
-            	            ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+            	            ViewGroup.LayoutParams.MATCH_PARENT, 2f));
             	//If image was added by user, get the full path from database
         		if(imagens.get(count).getImagem()
         				.contains("saved")){
@@ -589,15 +606,17 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	figura2.setOnClickListener(getOnClick(figura2));
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
-            			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 2f));
+            	Lines.setWeightSum(coluna);//Numero de colunas
             	Lines.addView(figura2);
             	count++;
         	}
     	}
     }
     
-    public void createButtonsSent(int numb){
+    public void createButtonsSent(){
+    	int linha = 3;
+    	int coluna = 4;
     	int i = 0,j = 0;
     	int count = 0;
     	
@@ -611,7 +630,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(linha);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -634,8 +653,8 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         }
 
         //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
+        for(j = 0; j < linha; j++){
+        	for(i = 0; i < coluna; i++){
         		figura2 = new ImageButtonM(this);//ImageButtonM extends
         		//Image button and add a String Text to attributes
             	figura2.setTag("mybutton "+count);
@@ -662,14 +681,16 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            	Lines.setWeightSum(coluna);//Numero de colunas
             	Lines.addView(figura2);
             	count++;
         	}
     	}
     }
     
-    public void createButtonsVerb(int numb){
+    public void createButtonsVerb(){
+    	int linha = 3;
+    	int coluna = 4;
     	int i = 0,j = 0;
     	int count = 0;
     	
@@ -683,7 +704,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     	
     	//Set the weight of all layout
     	LinearLayout MasterLine = (LinearLayout) findViewById(R.id.lines);
-        MasterLine.setWeightSum(numb);//Numero de linhas
+        MasterLine.setWeightSum(linha);//Numero de linhas
         //
         int layouts[] = {
         		((View) findViewById(R.id.line01)).getId(),
@@ -706,8 +727,8 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
         }
 
         //set the attributes of the ImageButonM
-        for(j = 0; j < numb; j++){
-        	for(i = 0; i < numb; i++){
+        for(j = 0; j < linha; j++){
+        	for(i = 0; i < coluna; i++){
         		figura2 = new ImageButtonM(this);//ImageButtonM extends
         		//Image button and add a String Text to attributes
             	figura2.setTag("mybutton "+count);
@@ -734,12 +755,12 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
             	Lines = (LinearLayout) findViewById(layouts[j]);
             	Lines.setLayoutParams(new LinearLayout.LayoutParams(
             			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-            	Lines.setWeightSum(numb);//Numero de colunas
+            	Lines.setWeightSum(coluna);//Numero de colunas
             	Lines.addView(figura2);
             	count++;
         	}
     	}
-    }*/
+    }
   
     //Get the text and synthesis that
     View.OnClickListener getOnClick(final ImageButtonM figura)  {
@@ -765,25 +786,25 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 			switch(cod){
 			
 			case 0:
-				createButtonsPes(sizeX);
+				createButtonsPes();
 				break;	
 			case 1:
-			//	createButtonsPerg(sizeX);
+				createButtonsPerg();
 				break;
 			case 2:
-			//	createButtonsExp(sizeX);
+				createButtonsExp();
 				break;
 			case 3:	
-			//	createButtonsAdj(sizeX);				
+				createButtonsVerb();		
 				break;
 			case 4:
-			//	createButtonsAcao(sizeX);				
+				createButtonsAdj();				
 				break;
 			case 5:
-			//	createButtonsSent(sizeX);				
+				createButtonsAcao();					
 				break;
 			case 6:
-			//	createButtonsVerb(sizeX);				
+				createButtonsSent();			
 				break;
 				}
 			}
@@ -792,33 +813,19 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 
     //define menu
     public boolean onCreateOptionsMenu(Menu menu) {
-       //getMenuInflater().inflate(R.menu.avoxlaps, menu); modifiquei p/ ajeitar
-        
-        MenuItem resol = menu.add(0,0,0,"Resolução");
+      
+        MenuItem excluir = menu.add(0,0,0,"Excluir Botão");
         MenuItem novo = menu.add(0,1,0,"Adicionar Imagem");
-        resol.setIcon(R.drawable.ic_launcher);
+        excluir.setIcon(R.drawable.cancel);
         novo.setIcon(android.R.drawable.ic_menu_camera);
       
         return true;
     }
     
     public boolean onOptionsItemSelected(MenuItem item){
-    	//Define the resolution of the buttons
+    
        if( item.getItemId() == 0){
-        	final CharSequence[] items = {"3x3", "4x4","5x5","6x6","7x7"
-        			,"8x8"};
-        	new AlertDialog.Builder(this)
-        	.setIcon(android.R.drawable.ic_dialog_alert)
-        	.setTitle("Escolha uma resolução")
-        	.setItems(items, new DialogInterface.OnClickListener() {
-        	    public void onClick(DialogInterface dialog, int item) {
-        	    	sizeX = item + 3;
-        	    	//condição para resolução outras telas
-        	    	createButtonsPes(sizeX);
-        	        Toast.makeText(getApplicationContext(), items[item],
-        	        		Toast.LENGTH_SHORT).show();
-        	    }
-        	}).show();
+    //add exclusao das imgs
         }
         if( item.getItemId() == 1){
         	startActivity(new Intent(this, AddImage.class));
@@ -878,6 +885,21 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 		createButtons(3);
     }
 	
+	public void buttonProximo(View v)  {
+		
+		Button proximo = (Button) findViewById (R.id.proximo);
+		proximo.setClickable(true);
+		
+		List<pessoa> img = getPes();
+	
+		if(img.equals(true)){
+			Toast.makeText(voxlaps.this,"funcionou!!!", Toast.LENGTH_LONG).show();
+		}
+	
+	//condição das telas
+    }
+
+	
 	//get all itens in database
 	public List<menu> getImages(){
 		imageDB dao = new imageDB(this);
@@ -927,9 +949,9 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
 		return img;
 	}
 	
-	public List<acoes> getAC(){//mostra as imagens da tabela ações
+	public List<acao> getAC(){//mostra as imagens da tabela ações
 		imageDB ac = new imageDB(this);
-		final List<acoes> img = ac.getListaAC();
+		final List<acao> img = ac.getListaAC();
 		ac.close();
 		
 		return img;

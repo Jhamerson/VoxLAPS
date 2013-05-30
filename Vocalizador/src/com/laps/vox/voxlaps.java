@@ -542,7 +542,7 @@ public class voxlaps extends Activity implements TextToSpeech.OnInitListener{
     
     public void createButtonsAdj(){
     	int linha = 3;
-    	int coluna = 3;
+    	int coluna = 4;
     	int i = 0,j = 0;
     	int count = 0;
     	

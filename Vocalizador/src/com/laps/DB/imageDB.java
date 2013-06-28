@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import com.laps.vox.acao;
 import com.laps.vox.adjetivo;
+import com.laps.vox.alimento;
 import com.laps.vox.expressao;
+import com.laps.vox.letra;
 import com.laps.vox.menu;
+import com.laps.vox.numero;
 import com.laps.vox.pergunta;
 import com.laps.vox.pessoa;
 import com.laps.vox.sentimento;
@@ -32,6 +35,9 @@ public class imageDB extends SQLiteOpenHelper {
 	private static final String SENT = "sentimento";
 	private static final String AC = "acao";
 	private static final String VERB = "verbo";
+	private static final String ALIM = "alimento";
+	private static final String LETRA = "letra";
+	private static final String NUM = "numero";
 	private static Context context;
 
 	private static final String[] colmenu = {"ID_menu", "Nome", "Texto", "Imagem", "Posicao"};
@@ -42,6 +48,9 @@ public class imageDB extends SQLiteOpenHelper {
 	private static final String[] colsent = {"ID_sent","Nome", "Texto", "Imagem", "Posicao", "codsent_menu"};
 	private static final String[] colac = {"ID_ac","Nome", "Texto", "Imagem", "Posicao", "codac_menu"};
 	private static final String[] colverb = {"ID_verb","Nome", "Texto", "Imagem", "Posicao", "codv_menu"};
+	private static final String[] colalim = {"ID_alim","Nome", "Texto", "Imagem", "Posicao", "codal_menu"};
+	private static final String[] collet = {"ID_let","Nome", "Texto", "Imagem", "Posicao", "codlet_menu"};
+	private static final String[] colnum = {"ID_num","Nome", "Texto", "Imagem", "Posicao", "codnum_menu"};
 	
 	public imageDB(Context context) {
 		super(context, NAME_DB, null, VERSAO);
@@ -68,6 +77,12 @@ public class imageDB extends SQLiteOpenHelper {
 "Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codac_menu INTEGER, constraint fk_acm FOREIGN KEY (codac_menu) references menu (ID_menu))";
 		String SQL8 = "CREATE TABLE IF NOT EXISTS verbo (ID_verb INTEGER PRIMARY KEY AUTOINCREMENT, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
 "Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codv_menu INTEGER, constraint fk_vm FOREIGN KEY (codv_menu) references menu (ID_menu))";
+		String SQL9 = "CREATE TABLE IF NOT EXISTS alimento (ID_alim INTEGER PRIMARY KEY AUTOINCREMENT, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codal_menu INTEGER, constraint fk_alm FOREIGN KEY (codal_menu) references menu (ID_menu))";
+		String SQL10 = "CREATE TABLE IF NOT EXISTS letra (ID_let INTEGER PRIMARY KEY AUTOINCREMENT, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codlet_menu INTEGER, constraint fk_lem FOREIGN KEY (codlet_menu) references menu (ID_menu))";
+		String SQL11 = "CREATE TABLE IF NOT EXISTS numero (ID_num INTEGER PRIMARY KEY AUTOINCREMENT, Nome TEXT UNIQUE NOT NULL, Texto TEXT UNIQUE NOT NULL," +
+"Imagem TEXT UNIQUE NOT NULL, Posicao INTEGER, codnum_menu INTEGER, constraint fk_nm FOREIGN KEY (codnum_menu) references menu (ID_menu))";
 		
 		db.execSQL(SQL);
 		db.execSQL(SQL2);
@@ -77,6 +92,9 @@ public class imageDB extends SQLiteOpenHelper {
 		db.execSQL(SQL6);
 		db.execSQL(SQL7);
 		db.execSQL(SQL8);
+		db.execSQL(SQL9);
+		db.execSQL(SQL10);
+		db.execSQL(SQL11);
 	
 	db.beginTransaction();
 	
@@ -285,6 +303,69 @@ valorbd2.close();
 return acao;
 
 }
+
+public List<alimento> getListaAL(){//lista de imagens tabela acao
+	
+	List<alimento> ali = new ArrayList<alimento>();
+	
+	Cursor valorbd2 = getWritableDatabase().query(ALIM, colalim, null, null, null, null, null);
+	
+while (valorbd2.moveToNext()){
+	alimento valoral = new alimento();
+	valoral.setID_alim(valorbd2.getInt(0));
+	valoral.setNome(valorbd2.getString(1));
+	valoral.setTexto(valorbd2.getString(2));
+	valoral.setImagem(valorbd2.getString(3));
+	valoral.setPosicao(valorbd2.getInt(4));
+	valoral.setCodal_menu(valorbd2.getInt(5));
+	ali.add(valoral);
+}
+valorbd2.close();
+return ali;
+
+}
+
+public List<letra> getListaLET(){//lista de imagens tabela acao
+	
+	List<letra> letr = new ArrayList<letra>();
+	
+	Cursor valorbd2 = getWritableDatabase().query(LETRA, collet, null, null, null, null, null);
+	
+while (valorbd2.moveToNext()){
+	letra valorlet = new letra();
+	valorlet.setID_let(valorbd2.getInt(0));
+	valorlet.setNome(valorbd2.getString(1));
+	valorlet.setTexto(valorbd2.getString(2));
+	valorlet.setImagem(valorbd2.getString(3));
+	valorlet.setPosicao(valorbd2.getInt(4));
+	valorlet.setCodlet_menu(valorbd2.getInt(5));
+	letr.add(valorlet);
+}
+valorbd2.close();
+return letr;
+
+}
+
+public List<numero> getListaN(){//lista de imagens tabela acao
+	
+	List<numero> num = new ArrayList<numero>();
+	
+	Cursor valorbd2 = getWritableDatabase().query(NUM, colnum, null, null, null, null, null);
+	
+while (valorbd2.moveToNext()){
+	numero valorn = new numero();
+	valorn.setID_num(valorbd2.getInt(0));
+	valorn.setNome(valorbd2.getString(1));
+	valorn.setTexto(valorbd2.getString(2));
+	valorn.setImagem(valorbd2.getString(3));
+	valorn.setPosicao(valorbd2.getInt(4));
+	valorn.setCodnum_menu(valorbd2.getInt(5));
+	num.add(valorn);
+}
+valorbd2.close();
+return num;
+
+}
 	
 	public void InserirP(pessoa image){//add os valores novos
 		 
@@ -364,6 +445,39 @@ return acao;
 		Novo.put("Posicao", image.getPosicao());
 		Novo.put("codexp_menu", image.getCodexp_menu());
 		getWritableDatabase().insert(EXP,null,Novo);
+	}
+	
+	public void InserirAL(alimento image){//add os valores novos
+		 
+		ContentValues Novo = new ContentValues();
+		Novo.put("Nome", image.getNome());
+		Novo.put("Texto", image.getTexto());
+		Novo.put("Imagem", image.getImagem());
+		Novo.put("Posicao", image.getPosicao());
+		Novo.put("codal_menu", image.getCodal_menu());
+		getWritableDatabase().insert(ALIM,null,Novo);
+	}
+	
+	public void InserirLET(letra image){//add os valores novos
+		 
+		ContentValues Novo = new ContentValues();
+		Novo.put("Nome", image.getNome());
+		Novo.put("Texto", image.getTexto());
+		Novo.put("Imagem", image.getImagem());
+		Novo.put("Posicao", image.getPosicao());
+		Novo.put("codlet_menu", image.getCodlet_menu());
+		getWritableDatabase().insert(LETRA,null,Novo);
+	}
+	
+	public void InserirNUM(numero image){//add os valores novos
+		 
+		ContentValues Novo = new ContentValues();
+		Novo.put("Nome", image.getNome());
+		Novo.put("Texto", image.getTexto());
+		Novo.put("Imagem", image.getImagem());
+		Novo.put("Posicao", image.getPosicao());
+		Novo.put("codnum_menu", image.getCodnum_menu());
+		getWritableDatabase().insert(NUM,null,Novo);
 	}
 	
 }

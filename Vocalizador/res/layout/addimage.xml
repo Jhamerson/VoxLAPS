@@ -63,44 +63,49 @@
             android:id="@+id/pes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pessoa" />
+            android:text="Pessoas" />
 
         <RadioButton
             android:id="@+id/verb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Verbo" />
+            android:text="Verbos" />
 
         <RadioButton
             android:id="@+id/acao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ação" />
+            android:text="Ações" />
 
         <RadioButton
             android:id="@+id/perg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pergunta" />
+            android:text="Perguntas" />
 
         <RadioButton
             android:id="@+id/sent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sentimento" />
+            android:text="Sentimentos" />
 
         <RadioButton
             android:id="@+id/adj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adjetivo" />
+            android:text="Adjetivos" />
                        
    <RadioButton
             android:id="@+id/exp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Expressão" />
-    </RadioGroup>
+            android:text="Expressões" />
+   <RadioButton
+            android:id="@+id/al"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alimentos" />
+   </RadioGroup>
 
     <ImageView
         android:id="@+id/imagePreview"
